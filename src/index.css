@@ -10,6 +10,18 @@
   font-family: poppins;
 }
 
+@theme {
+  --breakpoint-xs: 280px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  --color-darkGreen: #006400;
+  --color-beige: #F5F5DC;
+  --color-slate: #334155
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
