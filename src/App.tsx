@@ -1,18 +1,18 @@
-import { Button } from "./components/ui/button";
-import { Github } from "lucide-react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./components/home/HomePage";
+import ContactPage from "./components/contact/Contact";
+import NavBar from "./components/NavBar";
 
 export default function App() {
   return (
-    <div className="w-full h-screen flex items-center justify-center flex-col">
-      <h1 className="font-bold text-4xl"> Hello world, </h1>
-      <p className="text-center">
-        This portfolio is currently under development... please come back later.
-      </p>
-      <a href="https://www.github.com/iamguystephane">
-        <Button className="cursor-pointer !px-8 !py-2" variant="outline">
-          Visit GitHuB <Github />
-        </Button>
-      </a>
-    </div>
+    <BrowserRouter>
+      <div className="bg-gradient-to-b dark:from-black dark:to-gray-800 px-4 text-white">
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
