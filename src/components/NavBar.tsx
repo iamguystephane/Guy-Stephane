@@ -2,18 +2,22 @@ import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Code, Menu } from "lucide-react";
 import { NavLinks } from "@/scripts/NavLinks";
-import { Moon, Sun } from "lucide-react";
+import { Sun } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 
-export default function NavBar() {
+interface navBarProps {
+  onOpen?: () => void;
+}
+
+export default function NavBar({ onOpen }: navBarProps) {
   const location = useLocation();
   const getCurrentPath = (url: string) => {
-    if(url === location.pathname) {
-      return "text-darkGreen"
+    if (url === location.pathname) {
+      return "text-darkGreen";
     }
-    return ""
-  }
+    return "";
+  };
 
   return (
     <>
@@ -52,6 +56,7 @@ export default function NavBar() {
         </div>
         <div className="flex items-center gap-4">
           <Button
+            onClick={onOpen}
             className="!px-5 cursor-pointer md:hidden"
             variant="ghost"
           >

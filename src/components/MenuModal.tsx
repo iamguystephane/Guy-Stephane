@@ -4,8 +4,14 @@ import { Button } from "./ui/button";
 import { NavLinks } from "@/scripts/NavLinks";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import type React from "react";
 
-const MenuModal = () => {
+interface MenuModalProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
   const location = useLocation();
   const getCurrentPath = (url: string) => {
     if (url === location.pathname) {
@@ -15,8 +21,20 @@ const MenuModal = () => {
   };
 
   return (
-    <div className="w-full h-screen fixed top-0 backdrop-blur-lg bg-black/10 z-49 flex justify-end">
-      <div className="bg-white dark:bg-black h-screen w-[85%] !py-2">
+    <div
+      className={`w-full transition-opacity duration-300 ease-in-out h-screen fixed top-0 backdrop-blur-lg bg-black/10 z-49 flex justify-end ${
+        isOpen
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
+      }`}
+      onClick={onClose}
+    >
+      <div
+        className={`bg-white dark:bg-black h-screen w-[85%] transform transition-transform duration-300 ease-in-out !py-2 ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex items-center justify-between !pb-4 border-b border-gray-300 !px-4">
           <div className="cursor-pointer transition-all duration-300 drop-shadow-[0_0_12px_rgba(16,185,129,0.8)] bg-transparent">
             <h1 className="flex gap-2 items-center">
@@ -38,7 +56,7 @@ const MenuModal = () => {
             <Button variant="ghost" className="!px-4">
               <Sun size={20} color="grey" />
             </Button>
-            <Button variant="ghost" className="!px-4">
+            <Button variant="ghost" className="!px-4" onClick={onClose}>
               <X size={20} color="grey" />
             </Button>
           </div>
@@ -55,7 +73,10 @@ const MenuModal = () => {
                 {" "}
                 {link.name}{" "}
               </h1>
-              <ChevronRight size={20} className={`${getCurrentPath(link.href)}`} />
+              <ChevronRight
+                size={20}
+                className={`${getCurrentPath(link.href)}`}
+              />
             </Link>
           ))}
           <div className="!px-4 ">
