@@ -20,7 +20,7 @@ export default function NavBar({ onOpen }: navBarProps) {
   const { toggleDarkMode, darkModeOn } = useTheme();
 
   return (
-    <nav className="w-full backdrop-blur-lg shadow-sm dark:text-white text-black xsm:!px-4 md:!px-8 lg:!px-16 !py-2 fixed top-0 z-45 transition-all duration-500">
+    <nav className="w-full backdrop-blur-lg shadow-sm xsm:!px-4 md:!px-8 lg:!px-16 !py-2 fixed top-0 z-45 transition-all duration-500 shadow-foreground/5">
       <div className="flex items-center justify-between 2xl:w-3/4 !mx-auto">
         <div className="flex items-center gap-7">
           <Link to="/">

@@ -11,9 +11,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <MenuModal isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
-      <div className="bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-gray-800 px-4 transition-all duration-500">
+      <div className="bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-gray-800 min-h-screen px-4 transition-all duration-500">
         <NavBar onOpen={() => setIsMenuOpen(true)} />
-        <div className="xsm:!px-4 md:!px-8 lg:!px-16 !mt-16 2xl:w-3/4 !mx-auto">
+        <div className="xsm:!px-4 md:!px-8 lg:!px-16 !mt-28 2xl:w-3/4 !mx-auto">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/contact" element={<ContactPage />} />
