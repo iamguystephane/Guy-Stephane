@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
-import { Code, Menu } from "lucide-react";
+import { Code, Menu, Moon, Sun } from "lucide-react";
 import { NavLinks } from "@/scripts/NavLinks";
-import { Sun } from "lucide-react";
 import { motion } from "framer-motion";
-import { useLocation } from "react-router-dom";
+import { useTheme } from "@/context/UseTheme";
 
 interface navBarProps {
   onOpen?: () => void;
@@ -12,16 +11,17 @@ interface navBarProps {
 
 export default function NavBar({ onOpen }: navBarProps) {
   const location = useLocation();
+
   const getCurrentPath = (url: string) => {
-    if (url === location.pathname) {
-      return "text-darkGreen";
-    }
-    return "";
+    return url === location.pathname ? "text-darkGreen" : "";
   };
 
+
+  const { toggleDarkMode, darkModeOn } = useTheme();
+
   return (
-    <>
-      <nav className="w-full flex items-center justify-between backdrop-blur-lg shadow-sm dark:bg-black dark:text-white text-black xsm:!px-4 md:!px-8 lg:!px-16 !py-2 fixed top-0">
+    <nav className="w-full backdrop-blur-lg shadow-sm dark:text-white text-black xsm:!px-4 md:!px-8 lg:!px-16 !py-2 fixed top-0 z-45 transition-all duration-500">
+      <div className="flex items-center justify-between 2xl:w-3/4 !mx-auto">
         <div className="flex items-center gap-7">
           <Link to="/">
             <div className="cursor-pointer transition-all duration-300 drop-shadow-[0_0_12px_rgba(16,185,129,0.8)] bg-transparent">
@@ -41,8 +41,7 @@ export default function NavBar({ onOpen }: navBarProps) {
               <h1 className="!ml-5 text-darkGreen">Stephane</h1>
             </div>
           </Link>
-
-          <div className="flex gap-6 text-gray-500 text-sm font-medium xsm:hidden md:flex">
+          <div className="flex gap-6 text-navText text-sm font-medium xsm:hidden md:flex">
             {NavLinks.map((link) => (
               <Link
                 key={link.name}
@@ -63,10 +62,11 @@ export default function NavBar({ onOpen }: navBarProps) {
             <Menu />
           </Button>
           <Button
-            className="!px-5 cursor-pointer xsm:hidden md:flex"
+            className="!px-5 cursor-pointer xsm:hidden md:flex transition-all duration-300 ease-in-out"
             variant="ghost"
+            onClick={toggleDarkMode}
           >
-            <Sun />
+            {darkModeOn ? <Sun /> : <Moon />}
           </Button>
           <Button
             variant="outline"
@@ -75,7 +75,7 @@ export default function NavBar({ onOpen }: navBarProps) {
             LOGIN
           </Button>
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 }
