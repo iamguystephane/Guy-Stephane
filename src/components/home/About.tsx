@@ -75,7 +75,7 @@ const HomePageAbout = () => {
             </div>
           </CardContent>
         </Card>
-        <Card className=" !bg-card/50 shadow-lg shadow-card/20 !pb-5 w-3/4 !px-8 !py-5">
+        <Card className=" !bg-card/50 shadow-lg shadow-card/20 !pb-5 xsm:w-full w-3/4 !px-8 !py-5">
           <h1 className="text-2xl font-bold">Bio</h1>
           <p className="text-black dark:text-gray-500 text-sm !pb-9 border-b">
             I am Guy Stephane, a Certified Software Engineer and a dedicated Web
