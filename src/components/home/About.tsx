@@ -1,5 +1,5 @@
 import {
-    ArrowRight,
+  ArrowRight,
   Circle,
   Dot,
   InstagramIcon,
@@ -12,7 +12,7 @@ import { Button } from "../ui/button";
 const HomePageAbout = () => {
   const experiences: { name: string; location: string; date: string }[] = [
     { name: "Freelance", location: "N/A", date: "2020 - Present" },
-    { name: "Web Developer", location: "AneXiums", date: "2025" },
+    { name: "Web Developer", location: "AneXiums", date: "2025 - Present" },
     { name: "Trainer", location: "Eschosys Tech", date: "2023 - Present" },
     { name: "Lecturer", location: "Eschosys Tech", date: "2023 - Present" },
   ];
@@ -37,7 +37,7 @@ const HomePageAbout = () => {
             <div className="w-[90%] bg-card h-85 dark:bg-card/40 shadow flex items-center justify-center !mx-auto !mt-4 rounded-lg flex-col">
               {/* Insert background image in this div. */}
               My Image is to be inserted here.
-              <div className="flex items-center bg-card/30 !px-3 !mt-60 rounded-full shadow">
+              <div className="flex items-center bg-card/30 !px-3 pr-7! !mt-60 rounded-full shadow">
                 <Dot color="limegreen" size={40} />
                 <p>Available for work</p>
               </div>
@@ -91,7 +91,7 @@ const HomePageAbout = () => {
               "UI/UX Design",
               "Graphic Design",
               "System Maintenance",
-              "DEVOPS",
+              "DevOps",
               "IT Consultancy",
               "Lecturer",
               "Trainer",
@@ -105,24 +105,29 @@ const HomePageAbout = () => {
             ))}
           </div>
           <div>
-            <h1 className="text-2xl font-bold">Experiences</h1>
-            {experiences.map((xp, index) => (
-              <Card
-                key={index}
-                className="!bg-card/50 !shadow-card/50 !px-5 !my-2 !py-2"
-              >
-                <CardContent className="flex w-full items-center justify-between !text-start flex-wrap">
-                  <p>{xp.name}</p>
-                  <p>{xp.location}</p>
-                  <p>{xp.date}</p>
-                </CardContent>
-              </Card>
-            ))}
-            <a href="" className="!mt-5">
-              <Button className="!px-5 !mt-5 rounded-full bg-darkGreen hover:!bg-darkGreen/90 shadow-lg shadow-darkGreen/30 cursor-pointer dark:bg-white dark:text-black dark:hover:!bg-[#f9f9f9] dark:hover:!text-black">
-                View More on LinkedIn <ArrowRight className="-rotate-45" />{" "}
-              </Button>
-            </a>
+            <h1 className="text-2xl font-bold text-center mb-6">Experiences</h1>
+            <div className="space-y-3">
+              {experiences.map((xp, index) => (
+                <Card key={index} className="!bg-card/50 !shadow-card/50 mb-2!">
+                  <CardContent className="flex w-full items-center justify-between !text-start px-5! py-3!">
+                    <p className="font-medium min-w-[120px]">{xp.name}</p>
+                    <p className="text-gray-500 min-w-[100px] text-center">
+                      {xp.location}
+                    </p>
+                    <p className="text-gray-400 min-w-[120px] text-right">
+                      {xp.date}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <div className="flex justify-start mt-8!">
+              <a href="">
+                <Button className="!px-5 rounded-full bg-darkGreen hover:!bg-darkGreen/90 shadow-lg shadow-darkGreen/30 cursor-pointer dark:bg-white dark:text-black dark:hover:!bg-[#f9f9f9] dark:hover:!text-black">
+                  View More on LinkedIn <ArrowRight className="-rotate-45" />{" "}
+                </Button>
+              </a>
+            </div>
           </div>
         </Card>
       </div>
