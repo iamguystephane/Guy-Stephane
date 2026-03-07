@@ -78,7 +78,7 @@ const Services = () => {
             key={index}
             className="!bg-card/50 shadow-lg shadow-card/20 hover:shadow-xl transition-all duration-300 group hover:-translate-y-2"
           >
-            <CardContent className="!py-8 flex flex-col items-center text-center">
+            <CardContent className="!py-8 px-3! flex flex-col items-center text-center">
               <div className="!p-4 bg-darkGreen/10 dark:bg-white/10 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
                 {service.icon}
               </div>
