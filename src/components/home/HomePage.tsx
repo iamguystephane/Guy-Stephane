@@ -1,13 +1,23 @@
 import HomePageAbout from "./About";
 import HomeHero from "./HomeHero";
-import HowItWorks from "./HowItWorks";
+import Projects from "./Projects";
+import Services from "./Services";
+import Contact from "./Contact";
+import Footer from "./Footer";
 
 const HomePage = () => {
   return (
     <>
-      <HomeHero />
-      <HomePageAbout />
-      <HowItWorks />
+      <section id="home">
+        <HomeHero />
+      </section>
+      <section id="about">
+        <HomePageAbout />
+      </section>
+      <Projects />
+      <Services />
+      <Contact />
+      <Footer />
     </>
   );
 };
