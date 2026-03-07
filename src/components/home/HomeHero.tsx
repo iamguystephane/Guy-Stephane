@@ -1,9 +1,19 @@
 import { ArrowRight, Code } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
 import { Button } from "../ui/button";
-import { Link } from "react-router-dom";
 
 export default function HomeHero() {
+  const scrollToSection = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="grid xsm:grid-cols-1 md:grid-cols-2 gap-6 px-4 ">
       <div className="max-w-lg">
@@ -15,28 +25,28 @@ export default function HomeHero() {
         <div className="flex items-center gap-3 !mt-6 text-4xl">
           <h1>Guy</h1>
           <h1 className="font-bold">Stephane</h1>
-          <a href="" className="">
+          <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>
             <Button className="!cursor-pointer !px-3 rounded-full shadow !bg-card">
               <ArrowRight className="-rotate-45 text-foreground" />
             </Button>
           </a>
         </div>
         <p>
-          I’m a passionate full-stack developer skilled in building modern web
+          I'm a passionate full-stack developer skilled in building modern web
           and mobile applications with clean design, efficient code, and
           seamless user experiences.
         </p>
         <div className="flex gap-4 items-center">
-          <Link to="/projects">
+          <a href="#projects" onClick={(e) => scrollToSection(e, "#projects")}>
             <Button className="!px-5 !py-6 !rounded-full !mt-6 cursor-pointer !bg-darkGreen text-white hover:!bg-darkGreen/90 shadow-lg shadow-darkGreen/30">
               View Projects
             </Button>
-          </Link>
-          <Link to="/projects">
+          </a>
+          <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>
             <Button className="!px-5 !py-6 !rounded-full !mt-6 cursor-pointer">
               Contact Now
             </Button>
-          </Link>
+          </a>
         </div>
       </div>
       <div className="flex flex-wrap">
