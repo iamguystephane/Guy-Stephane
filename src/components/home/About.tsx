@@ -109,7 +109,7 @@ const HomePageAbout = () => {
             <div className="space-y-3">
               {experiences.map((xp, index) => (
                 <Card key={index} className="!bg-card/50 !shadow-card/50 mb-2!">
-                  <CardContent className="flex w-full items-center justify-between !text-start px-5! py-3!">
+                  <CardContent className="flex w-full items-center justify-between !text-start px-5! py-3! flex-wrap">
                     <p className="font-medium min-w-[120px]">{xp.name}</p>
                     <p className="text-gray-500 min-w-[100px] text-center">
                       {xp.location}
