@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
-import { Code, Sun, X, ChevronRight } from "lucide-react";
+import { Code, Sun, Moon, X, ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { NavLinks } from "@/scripts/NavLinks";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import type React from "react";
+import { useTheme } from "@/context/UseTheme";
 
 interface MenuModalProps {
   isOpen?: boolean;
@@ -12,25 +11,31 @@ interface MenuModalProps {
 }
 
 const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
-  const location = useLocation();
-  const getCurrentPath = (url: string) => {
-    if (url === location.pathname) {
-      return "text-darkGreen";
+  const scrollToSection = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
     }
-    return "";
+    if (onClose) onClose();
   };
+
+  const { toggleDarkMode, darkModeOn } = useTheme();
 
   return (
     <div
-      className={`w-full transition-opacity duration-300 ease-in-out h-screen fixed top-0 backdrop-blur-lg bg-black/10 z-49 flex justify-end ${
-        isOpen
-          ? "opacity-100 pointer-events-auto"
-          : "opacity-0 pointer-events-none"
+      className={`w-full transition-opacity duration-300 ease-in-out h-screen fixed top-0 backdrop-blur-lg bg-black/10 !z-49 flex justify-end ${
+        isOpen ?
+          "opacity-100 pointer-events-auto"
+        : "opacity-0 pointer-events-none"
       }`}
       onClick={onClose}
     >
       <div
-        className={`bg-white dark:bg-black h-screen w-[85%] transform transition-transform duration-300 ease-in-out !py-2 ${
+        className={`bg-white !z-49 dark:bg-black h-screen w-[85%] transform transition-transform duration-300 ease-in-out !py-2 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -53,8 +58,14 @@ const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
             <h1 className="!ml-5 text-darkGreen">Stephane</h1>
           </div>
           <div>
-            <Button variant="ghost" className="!px-4">
-              <Sun size={20} color="grey" />
+            <Button
+              className="!px-5 cursor-pointer md:hidden transition-all duration-300 ease-in-out"
+              variant="ghost"
+              onClick={toggleDarkMode}
+            >
+              {darkModeOn ?
+                <Sun color="grey" />
+              : <Moon color="grey" />}
             </Button>
             <Button variant="ghost" className="!px-4" onClick={onClose}>
               <X size={20} color="grey" />
@@ -62,28 +73,18 @@ const MenuModal: React.FC<MenuModalProps> = ({ isOpen, onClose }) => {
           </div>
         </div>
         <div className="!mt-8">
-          <h1 className="text-gray-500 text-xl !px-4 "> Menu </h1>
+          <h1 className="text-navText text-xl !px-4 "> Menu </h1>
           {NavLinks.map((link) => (
-            <Link
-              to={link.href}
+            <a
+              href={link.href}
               key={link.href}
-              className="!mt-5 flex items-center justify-between !px-4 !pb-6 border-b border-gray-200"
+              onClick={(e) => scrollToSection(e, link.href)}
+              className="!mt-5 flex items-center justify-between !px-4 !pb-6 border-b border-gray-200 cursor-pointer hover:text-darkGreen transition-colors duration-200"
             >
-              <h1 className={`font-medium ${getCurrentPath(link.href)}`}>
-                {" "}
-                {link.name}{" "}
-              </h1>
-              <ChevronRight
-                size={20}
-                className={`${getCurrentPath(link.href)}`}
-              />
-            </Link>
+              <h1 className="font-medium">{link.name}</h1>
+              <ChevronRight size={20} />
+            </a>
           ))}
-          <div className="!px-4 ">
-            <Button variant="outline" className="w-full !py-5 !mt-10">
-              LOGIN
-            </Button>
-          </div>
         </div>
       </div>
     </div>
