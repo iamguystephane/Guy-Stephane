@@ -1,4 +1,4 @@
-import { ExternalLink, Info } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
 import { Button } from "../ui/button";
 import acastemLogo from "../../assets/stem-logo.jpg";
