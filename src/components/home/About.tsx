@@ -59,7 +59,7 @@ const HomePageAbout = () => {
         Brief initial representation of myself, and my previous experiences.
       </p>
       <div className="!mt-6 px-4 w-full flex items-start xl:items-center xsm:flex-col-reverse xl:flex-row justify-center gap-6">
-        <Card className="!w-100 !bg-card/50 shadow-lg shadow-card/20 !pb-5">
+        <Card className="xsm:w-full md:!w-100 !bg-card/50 shadow-lg shadow-card/20 !pb-5">
           <CardContent>
             <div className="w-[90%] bg-card h-85 dark:bg-card/40 shadow flex items-center justify-center !mx-auto !mt-4 rounded-lg relative flex-col">
               <img
